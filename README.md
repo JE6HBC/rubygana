@@ -1,3 +1,6 @@
+# for miraikan
+`echo '蝙蝠なの?' | rubygana  --html --use-span --only-body`
+
 # rubygana
 
 漢字にルビ(ふりがな)を付けちゃうぞ。

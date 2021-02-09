@@ -52,6 +52,7 @@ const 引数なし = [
   ['-K', '--katakana'],
   ['--switch'],
   ['--use-rp'],
+  ['--use-span'],
 ]
 const 引数省略可 = [
   ['-a', '--add-class'],
@@ -72,6 +73,7 @@ const 排他的 = [
   ['--text', '--css'],
   ['--text', '--title'],
   ['--text', '--use-rp'],
+  ['--text', '--use-span'],
   ['--text', '--headline'],
   ['--text', '--only-body'],
   ['--text', '--ruby-size'],
@@ -85,6 +87,7 @@ const 排他的 = [
   ['--add-class', '--comment'],
   ['--add-class', '--katakana'],
   ['--add-class', '--use-rp'],
+  ['--add-class', '--use-span'],
   ['--add-class', '--headline'],
   ['--add-class', '--ruby-size'],
   ['--add-class', '--ruby'],
@@ -100,6 +103,7 @@ const 排他的 = [
   ['--md-html', '--comment'],
   ['--md-html', '--katakana'],
   ['--md-html', '--use-rp'],
+  ['--md-html', '--use-span'],
   ['--md-html', '--only-body'],
   ['--md-html', '--ruby-size'],
   ['--md-html', '--ruby'],
@@ -116,6 +120,7 @@ const 排他的 = [
   ['--text-html', '--comment'],
   ['--text-html', '--katakana'],
   ['--text-html', '--use-rp'],
+  ['--text-html', '--use-span'],
   ['--text-html', '--only-body'],
   ['--text-html', '--ruby-size'],
   ['--text-html', '--ruby'],
@@ -127,6 +132,7 @@ const 排他的 = [
   ['--only-body', '--css'],
   ['--only-body', '--title'],
   // --sample-md, --sample-text, --sample-html, --readme-, --helpなどは、他のオプションをあっても無視
+  ['--use-span', '--use-rp'],
 ]
 
 
@@ -156,7 +162,8 @@ const 排他的 = [
      '--title',
      '--ruby-size',
      '--css',
-     '--use_rp' ],
+     '--use_rp',
+     '--use_span',],
   grade: 0,
   granularity: 0,
   katakana: false,
@@ -165,6 +172,7 @@ const 排他的 = [
   ng_elements: 'ruby|script|style|code|pre|samp|blockquote',
   css: null,
   use_rp: false,
+  use_span: false,
   '末尾改行': true }
 */
 
@@ -742,6 +750,9 @@ function ruby要素調整() { // --htmlの場合
   if (オプション.use_rp) {
     オプション.左括弧 = '</rb><rp>(</rp><rt>'
     オプション.右括弧 = '</rt><rp>)</rp></ruby>'
+  } else if (オプション.use_span){
+    オプション.左括弧 = '\">'
+    オプション.右括弧 = '</span>'
   } else {
     オプション.左括弧 = '</rb><rt>'
     オプション.右括弧 = '</rt></ruby>'
